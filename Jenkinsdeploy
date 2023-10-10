@@ -1,8 +1,8 @@
 pipeline {
     agent any
 
-     stages {
-        stage('Docker Hub Login') {
+    stages {
+         stage('Docker Hub Login') {
             steps {
                 script {
                     // Define your Docker Hub credentials
@@ -15,7 +15,6 @@ pipeline {
             }
         }
 
-    stages {
         stage('Deploy Image 1') {
             steps {
                 script {
@@ -46,5 +45,5 @@ pipeline {
             }
         }
     }
-}
+
 }
