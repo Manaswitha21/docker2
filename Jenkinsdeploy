@@ -25,10 +25,10 @@ pipeline {
 
                     // SSH into your EC2 instance and pull/run the Docker image
                     sshagent(credentials: ['ssh-ec2']) {
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.88.128.153 'sudo docker pull ${imageName1}'"
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.88.128.153 'sudo docker run -d -p 3000:3000 ${imageName1}'"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.88.128.153 'docker pull ${imageName1}'"
+                        sh "docker run -d -p 3001:3000 ${imageName1}"
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@3.88.128.153 'sudo docker pull ${imageName2}'"
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.88.128.153 'sudo docker run -d -p 5000:5000 ${imageName2}'"
+                        sh "docker run -d -p 5001:5000 ${imageName2}"
                     }
                 }
             }
