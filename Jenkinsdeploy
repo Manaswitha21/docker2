@@ -22,9 +22,9 @@ pipeline {
                     def imageName1 = 'manaswitha2/dockerrepo2:one'
 
                     // SSH into your EC2 instance and pull/run the Docker image
-                    sshagent(credentials: ['ssh_ec2']) {
-                        sh "ssh -v ec2-user@3.93.21.237 'docker pull ${imageName1}'"
-                        sh "ssh -v ec2-user@3.93.21.237 'docker run -d 3000:3000 ${imageName1}'"
+                    sshagent(credentials: ['ssh-ec2']) {
+                        sh "ssh -v ec2-user@3.88.128.153 'docker pull ${imageName1}'"
+                        sh "ssh -v ec2-user@3.88.128.153 'docker run -d 3000:3000 ${imageName1}'"
                     }
                 }
             }
@@ -37,9 +37,9 @@ pipeline {
                     def imageName2 = 'manaswitha2/dockerrepo2:two'
 
                     // SSH into your EC2 instance and pull/run the Docker image
-                    sshagent(credentials: ['ssh_ec2']) {
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.93.21.237 'docker pull ${imageName2}'"
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.93.21.237 'docker run -d 5000:5000 ${imageName2}'"
+                    sshagent(credentials: ['ssh-ec2']) {
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.88.128.153 'docker pull ${imageName2}'"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.88.128.153 'docker run -d 5000:5000 ${imageName2}'"
                     }
                 }
             }
