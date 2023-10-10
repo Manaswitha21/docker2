@@ -5,10 +5,10 @@ pipeline {
          stage('Docker Hub Login') {
             steps {
                 script {
-                    // Define your Docker Hub credentials
-                    def dockerHubUsername = 'manaswitha2'
-                    def dockerHubPassword = 'D@123manu'
-                    
+                    def dockerHubCredentials = credentials('docker-hub-credentials')
+                    def dockerHubUsername = dockerHubCredentials.username
+                    def dockerHubPassword = dockerHubCredentials.password
+
                     // Login to Docker Hub
                     sh "docker login -u ${dockerHubUsername} -p ${dockerHubPassword}"
                 }
@@ -26,9 +26,9 @@ pipeline {
                     // SSH into your EC2 instance and pull/run the Docker image
                     sshagent(credentials: ['ssh-ec2']) {
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@3.88.128.153 'docker pull ${imageName1}'"
-                        sh "docker run -d -p 3002:3000 ${imageName1}"
+                        sh "docker run -d -p 3000:3000 ${imageName1}"
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@3.88.128.153 'sudo docker pull ${imageName2}'"
-                        sh "docker run -d -p 5002:5000 ${imageName2}"
+                        sh "docker run -d -p 5000:5000 ${imageName2}"
                     }
                 }
             }
