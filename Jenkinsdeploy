@@ -5,10 +5,11 @@ pipeline {
          stage('Docker Hub Login') {
             steps {
                 script {
-                    // Define your Docker Hub credentials
-                    def dockerHubUsername = 'manaswitha2'
-                    def dockerHubPassword = 'D@123manu'
-                    
+                    // Retrieve Docker Hub credentials from Jenkins Credentials
+                    def dockerHubCredentials = credentials('docker-hub-credentials')
+                    def dockerHubUsername = dockerHubCredentials.Username
+                    def dockerHubPassword = dockerHubCredentials.Password
+
                     // Login to Docker Hub
                     sh "docker login -u ${dockerHubUsername} -p ${dockerHubPassword}"
                 }
