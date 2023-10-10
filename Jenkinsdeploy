@@ -21,7 +21,7 @@ pipeline {
                 script {
                     // Define the Docker image name and tag
                     def imageName1 = 'manaswitha2/dockerrepo2:one'
-                    def imageName1 = 'manaswitha2/dockerrepo2:two'
+                    def imageName2 = 'manaswitha2/dockerrepo2:two'
                     
 
                     // SSH into your EC2 instance and pull/run the Docker image
