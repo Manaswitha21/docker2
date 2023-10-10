@@ -23,8 +23,8 @@ pipeline {
 
                     // SSH into your EC2 instance and pull/run the Docker image
                     sshagent(credentials: ['ssh_ec2']) {
-                        sh "ssh ec2-user@3.93.21.237 'docker pull ${imageName1}'"
-                        sh "ssh ec2-user@3.93.21.237 'docker run -d 3000:3000 ${imageName1}'"
+                        sh "ssh -v ec2-user@3.93.21.237 'docker pull ${imageName1}'"
+                        sh "ssh -v ec2-user@3.93.21.237 'docker run -d 3000:3000 ${imageName1}'"
                     }
                 }
             }
